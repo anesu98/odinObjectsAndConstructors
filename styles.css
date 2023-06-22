@@ -131,6 +131,7 @@ body {
 
 #bookList .book p {
     font-size: 0.7rem;
+    margin: 0.3rem 0.5rem;
 }
 
 .addBookContainer {
