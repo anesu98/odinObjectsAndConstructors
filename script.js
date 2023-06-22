@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     myLibrary.push(newBook);
 
+    console.log(newBook.info());
 
     // Add the new book to the bookList element
     const newBookElement = document.createElement('div');
@@ -123,6 +124,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     newBookElement.appendChild(readStatusElement);
 
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.addEventListener('click', function() {
+      removeBook(newBook);
+    });
+    newBookElement.appendChild(removeButton);
+
+    const changeStatusButton = document.createElement('button');
+    changeStatusButton.textContent = 'Change Status';
+    changeStatusButton.addEventListener('click', function() {
+      toggleReadStatus(newBook);
+    });
+    newBookElement.appendChild(changeStatusButton);
+
+    const changeNameButton = document.createElement('button');
+    changeNameButton.textContent = 'Change Name';
+    changeNameButton.addEventListener('click', function() {
+      changeBookName(newBook);
+    });
+    newBookElement.appendChild(changeNameButton);
+
     bookListElement.appendChild(newBookElement);
 
     // Check if scroll is needed and update the bookList style
@@ -144,4 +166,96 @@ document.addEventListener('DOMContentLoaded', function() {
 
     form.reset();
   });
+
+  function removeBook(book) {
+    const bookIndex = myLibrary.indexOf(book);
+    if (bookIndex !== -1) {
+      myLibrary.splice(bookIndex, 1);
+      updateBookList();
+    }
+  }
+
+  function toggleReadStatus(book) {
+    book.readStatus = !book.readStatus;
+    updateBookList();
+  }
+
+  function changeBookName(book) {
+    const newBookName = prompt('Enter the new name for the book:');
+    if (newBookName) {
+      book.bookName = newBookName;
+      updateBookList();
+    }
+  }
+
+  function updateBookList() {
+    while (bookListElement.firstChild) {
+      bookListElement.removeChild(bookListElement.firstChild);
+    }
+
+    myLibrary.forEach(function(book) {
+      const newBookElement = document.createElement('div');
+      newBookElement.classList.add('book');
+
+      const bookNameElement = document.createElement('p');
+      bookNameElement.textContent = `Book Name: ${book.bookName}`;
+      newBookElement.appendChild(bookNameElement);
+
+      const authorElement = document.createElement('p');
+      authorElement.textContent = `Author: ${book.author}`;
+      newBookElement.appendChild(authorElement);
+
+      const pagesElement = document.createElement('p');
+      pagesElement.textContent = `Pages: ${book.pages}`;
+      newBookElement.appendChild(pagesElement);
+
+      const readStatusElement = document.createElement('p');
+      if (book.readStatus) {
+        readStatusElement.textContent = 'Read Status: Read';
+      } else {
+        readStatusElement.textContent = 'Read Status: Not Read';
+      }
+      newBookElement.appendChild(readStatusElement);
+
+      const removeButton = document.createElement('button');
+      removeButton.textContent = 'Remove';
+      removeButton.addEventListener('click', function() {
+        removeBook(book);
+      });
+      newBookElement.appendChild(removeButton);
+
+      const changeStatusButton = document.createElement('button');
+      changeStatusButton.textContent = 'Change Status';
+      changeStatusButton.addEventListener('click', function() {
+        toggleReadStatus(book);
+      });
+      newBookElement.appendChild(changeStatusButton);
+
+      const changeNameButton = document.createElement('button');
+      changeNameButton.textContent = 'Change Name';
+      changeNameButton.addEventListener('click', function() {
+        changeBookName(book);
+      });
+      newBookElement.appendChild(changeNameButton);
+
+      bookListElement.appendChild(newBookElement);
+    });
+
+    // Check if scroll is needed and update the bookList style
+    const maxHeight = 400; // Maximum height of the bookList in pixels
+
+    if (bookListElement.scrollHeight > maxHeight) {
+      bookListElement.style.overflowY = 'scroll';
+    } else {
+      bookListElement.style.overflowY = 'auto';
+    }
+
+    // Update the book count
+    const bookCount = myLibrary.length;
+    if (bookCount === 1) {
+      bookCountElement.textContent = `${bookCount} book`;
+    } else {
+      bookCountElement.textContent = `${bookCount} books`;
+    }
+  }
 });
