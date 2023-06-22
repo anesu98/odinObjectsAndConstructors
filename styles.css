@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+body {
+    border: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    line-height: 1rem;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    width: 100vmax;
+}
+
+.container {
+    border: 0;
+    margin: 0;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header {
+    border: 0;
+    margin: 0;
+    width: 90vmax;
+    height: 12vmax;
+}
+
+.pageTitle {
+    border: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#header h1 {
+    border: 0px;
+    margin: 0.4rem;
+    padding: 0.4rem;
+    height: fit-content;
+    width: fit-content;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+#header p {
+    border: 0;
+    margin: 0.1rem;
+    padding: 0.4rem;
+    height: fit-content;
+    width: fit-content;
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+#main {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    height: 78vmax;
+    width: 90vmax;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#main section {
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+#main section h2 {
+    border: 0px;
+    margin: 0.4rem;
+    padding: 0.4rem;
+    height: fit-content;
+    width: fit-content;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.bookListContainer {
+    width: 57vmax;
+    height: 95%;
+    margin: 0 1rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between
+}
+
+
+#bookList {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 10px;
+    background-color: lightgray;
+    width: 100%;
+    height: 68vmax;    
+}
+
+.addBookContainer {
+    width: 30vmax;
+    height: 40vmax;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#addBook div h2 {
+    margin-bottom: 0.72rem;
+}
+
+#addBook form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: auto;
+
+}
+
+#addBook form div {
+    width: 100%;
+    margin-bottom: 0.85rem;
+}
+
+#addBook form label {
+    border: 0;
+    margin: 0rem;
+    padding: 0rem;
+    height: 0;
+    width: 0;
+    font-size: 0.7rem;
+    font-weight: 300;
+}
+
+
+
+#addBook form input {
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+}
+
+#addBook form .submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#addBook form button {
+    margin: 0;
+    padding: 0.3rem;
+    width: 70%;
+    border-radius: 10px;
+    box-shadow: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.readStatus {
+    margin-left: 7rem;
+}
+
+#addBook form button:hover {
+    background-color: black;
+    color: white;
+}
+
+#footer {
+    border: 0;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    height: 8vmax;
+    width: 90vmax;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#footer div {
+    background-color: black;
+    border-radius: 10px;
+    margin: 0;
+    padding: 10px;
+    height: fit-content;
+    width: fit-content;
+    color: white;
+    font-size: 0.88rem;
+}
+
