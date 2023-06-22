@@ -107,7 +107,30 @@ body {
     border-radius: 10px;
     background-color: lightgray;
     width: 100%;
-    height: 68vmax;    
+    height: 68vmax;
+    max-height: 68vmax;
+    overflow-y: auto;  
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+#bookList .book {
+    border-style: solid;
+    border-color: darkgray;
+    border-width: 0 0 1px 0;
+
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#bookList .book p {
+    font-size: 0.7rem;
 }
 
 .addBookContainer {

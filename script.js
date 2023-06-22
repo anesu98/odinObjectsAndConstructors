@@ -66,43 +66,83 @@ function Player(name, marker) {
 // console.log(player2.statePlayer());
 
 
-
-// making a library
-
-//library info
+// Making a library
 let myLibrary = [];
 
-
-// Constructor function for book objects
 function Book(bookName, author, pages, readStatus) {
-    this.bookName = bookName;
-    this.author = author;
-    this.pages = pages;
-    this.readStatus = readStatus;
-  }
-  
-  // Prototype method for book objects
-  Book.prototype.info = function() {
-    return `${this.bookName} by ${this.author}, ${this.pages} pages, ${this.readStatus}`;
-  };
-  
-  // Event listener for the form submission
-  document.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form submission from refreshing the page
-  
-    // Retrieve form data
-    var bookName = document.getElementById('bookName').value;
-    var author = document.getElementById('author').value;
-    var pages = document.getElementById('pages').value;
-    var readStatus = document.getElementById('readStatus').checked;
-  
-    // Create new book object
-    var newBook = new Book(bookName, author, pages, readStatus);
-  
-    // Add new book object to myLibrary array
+  this.bookName = bookName;
+  this.author = author;
+  this.pages = pages;
+  this.readStatus = readStatus;
+}
+
+Book.prototype.info = function() {
+  return `${this.bookName} by ${this.author}, ${this.pages} pages, ${this.readStatus}`;
+};
+
+// Event listener for the form submission
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('form');
+  const bookListElement = document.getElementById('bookList');
+  const bookCountElement = document.getElementById('bookCount');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const bookName = document.getElementById('bookName').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const readStatus = document.getElementById('readStatus').checked;
+
+    const newBook = new Book(bookName, author, pages, readStatus);
+
     myLibrary.push(newBook);
-  
-  
-    //Reset the form fields
-    event.target.reset();
+
+    console.log(newBook.info());
+
+    // Add the new book to the bookList element
+    const newBookElement = document.createElement('div');
+    newBookElement.classList.add('book');
+
+    const bookNameElement = document.createElement('p');
+    bookNameElement.textContent = `Book Name: ${bookName}`;
+    newBookElement.appendChild(bookNameElement);
+
+    const authorElement = document.createElement('p');
+    authorElement.textContent = `Author: ${author}`;
+    newBookElement.appendChild(authorElement);
+
+    const pagesElement = document.createElement('p');
+    pagesElement.textContent = `Pages: ${pages}`;
+    newBookElement.appendChild(pagesElement);
+
+    const readStatusElement = document.createElement('p');
+    if (readStatus) {
+      readStatusElement.textContent = 'Read Status: Read';
+    } else {
+      readStatusElement.textContent = 'Read Status: Not Read';
+    }
+    newBookElement.appendChild(readStatusElement);
+
+    bookListElement.appendChild(newBookElement);
+
+    // Check if scroll is needed and update the bookList style
+    const maxHeight = 400; // Maximum height of the bookList in pixels
+
+    if (bookListElement.scrollHeight > maxHeight) {
+      bookListElement.style.overflowY = 'scroll';
+    } else {
+      bookListElement.style.overflowY = 'auto';
+    }
+
+    // Update the book count
+    const bookCount = myLibrary.length;
+    if (bookCount === 1) {
+      bookCountElement.textContent = `${bookCount} book`;
+    } else {
+      bookCountElement.textContent = `${bookCount} books`;
+    }
+
+    form.reset();
   });
+});
