@@ -73,19 +73,36 @@ function Player(name, marker) {
 let myLibrary = [];
 
 
-// objects that hold the book information
-function book (bookName, author, pages, readStatus) {
+// Constructor function for book objects
+function Book(bookName, author, pages, readStatus) {
     this.bookName = bookName;
     this.author = author;
     this.pages = pages;
     this.readStatus = readStatus;
-    this.info = function() {
-        return `${bookName} by ${author}, ${pages} pages, ${readStatus}`
-    }
-}
-
-// way to add objects to the page
-
-function addBookToLibrary() {
-
-}
+  }
+  
+  // Prototype method for book objects
+  Book.prototype.info = function() {
+    return `${this.bookName} by ${this.author}, ${this.pages} pages, ${this.readStatus}`;
+  };
+  
+  // Event listener for the form submission
+  document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission from refreshing the page
+  
+    // Retrieve form data
+    var bookName = document.getElementById('bookName').value;
+    var author = document.getElementById('author').value;
+    var pages = document.getElementById('pages').value;
+    var readStatus = document.getElementById('readStatus').checked;
+  
+    // Create new book object
+    var newBook = new Book(bookName, author, pages, readStatus);
+  
+    // Add new book object to myLibrary array
+    myLibrary.push(newBook);
+  
+  
+    //Reset the form fields
+    event.target.reset();
+  });
