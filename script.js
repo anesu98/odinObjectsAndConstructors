@@ -67,6 +67,7 @@ function Player(name, marker) {
 
 
 // Making a library
+// Making a library
 let myLibrary = [];
 
 function Book(bookName, author, pages, readStatus) {
@@ -119,6 +120,10 @@ document.addEventListener('DOMContentLoaded', function() {
     pagesElement.textContent = `Pages: ${pages}`;
     bookInfoElement.appendChild(pagesElement);
 
+    const readStatusElement = document.createElement('p');
+    readStatusElement.textContent = `Read Status: ${readStatus ? 'Read' : 'Unread'}`;
+    bookInfoElement.appendChild(readStatusElement);
+
     newBookElement.appendChild(bookInfoElement);
 
     const editDiv = document.createElement('div');
@@ -132,6 +137,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     editDiv.appendChild(removeButton);
 
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.classList.add('edit-btn');
+    editButton.addEventListener('click', function() {
+      editBook(newBook);
+    });
+    editDiv.appendChild(editButton);
+
     const changeStatusButton = document.createElement('button');
     changeStatusButton.textContent = 'Change Status';
     changeStatusButton.classList.add('change-status-btn');
@@ -139,14 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
       toggleReadStatus(newBook);
     });
     editDiv.appendChild(changeStatusButton);
-
-    const changeNameButton = document.createElement('button');
-    changeNameButton.textContent = 'Change Name';
-    changeNameButton.classList.add('change-name-btn');
-    changeNameButton.addEventListener('click', function() {
-      changeBookName(newBook);
-    });
-    editDiv.appendChild(changeNameButton);
 
     newBookElement.appendChild(editDiv);
 
@@ -185,10 +190,15 @@ document.addEventListener('DOMContentLoaded', function() {
     updateBookList();
   }
 
-  function changeBookName(book) {
+  function editBook(book) {
     const newBookName = prompt('Enter the new name for the book:');
-    if (newBookName) {
+    const newAuthor = prompt('Enter the new author for the book:');
+    const newPages = prompt('Enter the new number of pages for the book:');
+
+    if (newBookName && newAuthor && newPages) {
       book.bookName = newBookName;
+      book.author = newAuthor;
+      book.pages = newPages;
       updateBookList();
     }
   }
@@ -217,6 +227,10 @@ document.addEventListener('DOMContentLoaded', function() {
       pagesElement.textContent = `Pages: ${book.pages}`;
       bookInfoElement.appendChild(pagesElement);
 
+      const readStatusElement = document.createElement('p');
+      readStatusElement.textContent = `Read Status: ${book.readStatus ? 'Read' : 'Unread'}`;
+      bookInfoElement.appendChild(readStatusElement);
+
       newBookElement.appendChild(bookInfoElement);
 
       const editDiv = document.createElement('div');
@@ -230,6 +244,14 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       editDiv.appendChild(removeButton);
 
+      const editButton = document.createElement('button');
+      editButton.textContent = 'Edit';
+      editButton.classList.add('edit-btn');
+      editButton.addEventListener('click', function() {
+        editBook(book);
+      });
+      editDiv.appendChild(editButton);
+
       const changeStatusButton = document.createElement('button');
       changeStatusButton.textContent = 'Change Status';
       changeStatusButton.classList.add('change-status-btn');
@@ -237,14 +259,6 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleReadStatus(book);
       });
       editDiv.appendChild(changeStatusButton);
-
-      const changeNameButton = document.createElement('button');
-      changeNameButton.textContent = 'Change Name';
-      changeNameButton.classList.add('change-name-btn');
-      changeNameButton.addEventListener('click', function() {
-        changeBookName(book);
-      });
-      editDiv.appendChild(changeNameButton);
 
       newBookElement.appendChild(editDiv);
 
