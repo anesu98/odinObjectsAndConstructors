@@ -99,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     myLibrary.push(newBook);
 
-    console.log(newBook.info());
 
     // Add the new book to the bookList element
     const newBookElement = document.createElement('div');
