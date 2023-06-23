@@ -104,46 +104,51 @@ document.addEventListener('DOMContentLoaded', function() {
     const newBookElement = document.createElement('div');
     newBookElement.classList.add('book');
 
+    const bookInfoElement = document.createElement('div');
+    bookInfoElement.classList.add('book-info');
+
     const bookNameElement = document.createElement('p');
     bookNameElement.textContent = `Book Name: ${bookName}`;
-    newBookElement.appendChild(bookNameElement);
+    bookInfoElement.appendChild(bookNameElement);
 
     const authorElement = document.createElement('p');
     authorElement.textContent = `Author: ${author}`;
-    newBookElement.appendChild(authorElement);
+    bookInfoElement.appendChild(authorElement);
 
     const pagesElement = document.createElement('p');
     pagesElement.textContent = `Pages: ${pages}`;
-    newBookElement.appendChild(pagesElement);
+    bookInfoElement.appendChild(pagesElement);
 
-    const readStatusElement = document.createElement('p');
-    if (readStatus) {
-      readStatusElement.textContent = 'Read Status: Read';
-    } else {
-      readStatusElement.textContent = 'Read Status: Not Read';
-    }
-    newBookElement.appendChild(readStatusElement);
+    newBookElement.appendChild(bookInfoElement);
+
+    const editDiv = document.createElement('div');
+    editDiv.classList.add('edit');
 
     const removeButton = document.createElement('button');
     removeButton.textContent = 'Remove';
+    removeButton.classList.add('remove-btn');
     removeButton.addEventListener('click', function() {
       removeBook(newBook);
     });
-    newBookElement.appendChild(removeButton);
+    editDiv.appendChild(removeButton);
 
     const changeStatusButton = document.createElement('button');
     changeStatusButton.textContent = 'Change Status';
+    changeStatusButton.classList.add('change-status-btn');
     changeStatusButton.addEventListener('click', function() {
       toggleReadStatus(newBook);
     });
-    newBookElement.appendChild(changeStatusButton);
+    editDiv.appendChild(changeStatusButton);
 
     const changeNameButton = document.createElement('button');
     changeNameButton.textContent = 'Change Name';
+    changeNameButton.classList.add('change-name-btn');
     changeNameButton.addEventListener('click', function() {
       changeBookName(newBook);
     });
-    newBookElement.appendChild(changeNameButton);
+    editDiv.appendChild(changeNameButton);
+
+    newBookElement.appendChild(editDiv);
 
     bookListElement.appendChild(newBookElement);
 
@@ -197,46 +202,51 @@ document.addEventListener('DOMContentLoaded', function() {
       const newBookElement = document.createElement('div');
       newBookElement.classList.add('book');
 
+      const bookInfoElement = document.createElement('div');
+      bookInfoElement.classList.add('book-info');
+
       const bookNameElement = document.createElement('p');
       bookNameElement.textContent = `Book Name: ${book.bookName}`;
-      newBookElement.appendChild(bookNameElement);
+      bookInfoElement.appendChild(bookNameElement);
 
       const authorElement = document.createElement('p');
       authorElement.textContent = `Author: ${book.author}`;
-      newBookElement.appendChild(authorElement);
+      bookInfoElement.appendChild(authorElement);
 
       const pagesElement = document.createElement('p');
       pagesElement.textContent = `Pages: ${book.pages}`;
-      newBookElement.appendChild(pagesElement);
+      bookInfoElement.appendChild(pagesElement);
 
-      const readStatusElement = document.createElement('p');
-      if (book.readStatus) {
-        readStatusElement.textContent = 'Read Status: Read';
-      } else {
-        readStatusElement.textContent = 'Read Status: Not Read';
-      }
-      newBookElement.appendChild(readStatusElement);
+      newBookElement.appendChild(bookInfoElement);
+
+      const editDiv = document.createElement('div');
+      editDiv.classList.add('edit');
 
       const removeButton = document.createElement('button');
       removeButton.textContent = 'Remove';
+      removeButton.classList.add('remove-btn');
       removeButton.addEventListener('click', function() {
         removeBook(book);
       });
-      newBookElement.appendChild(removeButton);
+      editDiv.appendChild(removeButton);
 
       const changeStatusButton = document.createElement('button');
       changeStatusButton.textContent = 'Change Status';
+      changeStatusButton.classList.add('change-status-btn');
       changeStatusButton.addEventListener('click', function() {
         toggleReadStatus(book);
       });
-      newBookElement.appendChild(changeStatusButton);
+      editDiv.appendChild(changeStatusButton);
 
       const changeNameButton = document.createElement('button');
       changeNameButton.textContent = 'Change Name';
+      changeNameButton.classList.add('change-name-btn');
       changeNameButton.addEventListener('click', function() {
         changeBookName(book);
       });
-      newBookElement.appendChild(changeNameButton);
+      editDiv.appendChild(changeNameButton);
+
+      newBookElement.appendChild(editDiv);
 
       bookListElement.appendChild(newBookElement);
     });
